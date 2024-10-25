@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<body style="background-color: #95d697;"
+ ></body>
+    
+
+<br>
+
+<h1 style="text-align: center;"> &#127926; Your Music Shopping Cart &#127928;</h1>
+<br><br> <br><br>
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <h4 class="">Customer Information</h4>
+          
+
+            {% for i in data %}
+                {% if forloop.counter == 1 %}
+                    <h6>Customer Name: {{ i.uid.username }}</h6>
+                    <h6>Customer Email: {{ i.uid.email }}</h6>
+                {% endif %}  
+<br><br><br><br>
+                <div class="row mb-3">
+                    <div class="col-md-7">
+                        <div class="card h-100">
+                            <img src="{{ i.pid.image.url }}" class="card-img-top" alt="{{ i.pid.title }}">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ i.pid.title }}</h2>
+                                <h3 class="card-text">{{ i.pid.artist }}</h3>
+                                <h4 class="card-text">{{ i.pid.album }}</h4>
+
+                                <strong> Qty:</strong>
+                                <button class="btn btn-secondary qty-btn" onclick="changeQty(-1)">-</button>
+                                <input type="number" value="{{i.qty}}" id="qtyInput" min="0">
+                                <button class="btn btn-secondary qty-btn" onclick="changeQty(1)">+</button>
+                                <a href="{% url 'removesong' i.id %}" class="btn btn-danger">Remove from cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="col-md-3">
+            <h1>Total Amount: <span id="totalAmount">$1000.00</span></h1>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+    function changeQty(amount) {
+        const input = document.getElementById('qtyInput');
+        let currentValue = parseInt(input.value);
+    
+        
+        currentValue = Math.max(0, currentValue + amount);
+        input.value = currentValue;
+    }
+    </script>
+
+
+{% endblock body %}

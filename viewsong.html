@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<body style="background-color: #95d697;"
+ ></body>
+   {% for i in song %}
+   
+   <div class="row mb-4">
+    <div class="col-md-6 d-flex justify-content-center p-5">
+        <img src="{{ i.image.url }}" class="img-fluid rounded" alt="{{ i.title }}">
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-center p-5">
+        <div class="card-body text-center p-4 mt-3">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text text-muted">{{ i.artist }}</p>
+            <h6 class="card-subtitle mb-2 text-muted">{{ i.album }}</h6>
+            <a href="{% url 'addtocart' i.id %}" class="btn btn-primary">Add song to cart</a>
+            <a href="{% url 'viewcart' %}" class="btn btn-danger">View cart</a>
+        </div>
+    </div>
+    
+    
+    
+</div>
+
+                    {% if success %}
+                    <div class="alert alert-success">
+                    {{success}}
+                    {% endif %}
+
+
+                       {% if msg %}
+                    <div class="alert alert-danger">
+                    {{msg}}
+                    {% endif %}
+                </div>
+                {% endfor %}
+{% endblock body %}

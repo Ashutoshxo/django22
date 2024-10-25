@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+
+ 
+
+<body style="background-color: #95d697;"
+ ></body>
+    
+
+
+<br>
+   <div class="container d-flex flex-column align-items-center">
+    <h2>LOGIN HERE</h2>
+        <div class="container w-50 shadow mt-3 p-5">
+        <form method="POST">
+            {% csrf_token %}
+            {{forms.as_p}}
+            <button type="submit" class="btn btn-primary btn-block">Submit HEREE</button>
+            
+       <button> <a href="register.html"></a  class= "btn-outline-success">  register</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

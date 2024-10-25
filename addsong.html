@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<form action="" method="POST">
+
+{% csrf_token %}
+ {{forms.as_table}}
+ <br>
+ <br>
+<h5>
+ <input type="submit"></h5>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

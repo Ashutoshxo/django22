@@ -1,0 +1,45 @@
+<h1 style="font-size: 4rem; color: #fff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: glow 1.5s infinite alternate; display: flex; justify-content: center; align-items: center; margin: 0;">NGC6188</h1><style>@keyframes glow {0% {text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(0, 0, 255, 0.7);} 100% {text-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 60px rgba(0, 0, 255, 1);}}</style>
+
+
+<body style="background-color: #95d697;"
+ ></body>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1DB954;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}" style="color: white;">NGC6188</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}" style="color: white;">Home</a>
+        </li>
+
+        {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'addsongs' %}" style="color: white;">Add Songs</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Log OUT</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logindetails' %}" style="color: white;">Log In</a>
+          </li>
+        {% endif %}
+
+       
+       
+      </ul>
+      <form action="{% url 'searchmusic' %}" method="POST" class="d-flex">
+        {% csrf_token %}
+        <span class="navbar-text me-3" style="color: white;">&#128525; {{ request.user }}</span>
+
+        <input class="form-control me-2" type="text" name='search' placeholder="Search a Song" aria-label="Search">
+        <button type="submit" class="btn btn-outline-light">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

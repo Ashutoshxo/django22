@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="sticky-top" style="top: 70px;">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-success mt-4 fw-bold w-100"  ;">Genre</button>
+                </li>
+                {% for i in music1 %}
+                <li class="list-group-item" style="text-align: center;  padding: 20px;border: 1px solid black;"">>
+                    <a href="{% url 'cat' i.id %}">{{ i.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row">
+            <h1 class="mt-4">Song</h1>
+            <h2 class="text-primary">This is what you are looking for!</h2>
+            {% for i in searchdata %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.title }}</h5>
+                        <p class="card-text">{{ i.artist }}</p>
+                        <h2 class="card-text"> {{i.album}}</h2>
+                        <a href="{% url 'aaa' i.id %}"> </a>
+                        <a href="#" class="btn btn-primary">play</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}
